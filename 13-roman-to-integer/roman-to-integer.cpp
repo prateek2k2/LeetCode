@@ -2,9 +2,8 @@ class Solution {
 public:
     int romanToInt(string s) 
     {
- int final = 0;
+    int final = 0;
     int l = s.length();
-    
     for (int i = 0; i < l; i++) {
         if (s[i] == 'I') {
             if ((i + 1 < l) && (s[i + 1] == 'V' || s[i + 1] == 'X')) {
