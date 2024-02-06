@@ -6,9 +6,10 @@ public:
             sum += nums[i];
         double maximum = sum;
         for(int i = k; i < nums.size(); i++) {
-            sum += nums[i] - nums[i-k];
+            sum += nums[i] ;
+            sum -= nums[i-k];
             maximum = max(maximum, sum);
         }
-        return maximum / k;
+        return maximum/k;
     }
 };
