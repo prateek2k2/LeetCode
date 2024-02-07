@@ -1,15 +1,25 @@
+#include <unordered_map>
+#include <vector>
+#include <algorithm>
+
 class Solution {
 public:
     string frequencySort(string s) {
-        vector<pair<int,char>> hash('z'+1,{0,0});
-        for(char c: s)
-            hash[c] = {hash[c].first+1,c};
-
-        sort(hash.begin(),hash.end());
-        
-        string res ="";
-        for(auto p: hash)
-            res = string(p.first,p.second) + res;
-        return res;
+        unordered_map<char, int> charCount;
+        for (char c : s) {
+            charCount[c]++;
+        }
+        vector<char> sortedChars;
+        for (const auto& entry : charCount) {
+            sortedChars.push_back(entry.first);
+        }
+        sort(sortedChars.begin(), sortedChars.end(), [&](char a, char b) {
+            return charCount[a] > charCount[b];
+        });
+        string result;
+        for (char c : sortedChars) {
+            result += string(charCount[c], c);
+        }
+        return result;
     }
 };
